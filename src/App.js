@@ -21,11 +21,10 @@ const App = () => {
 
     const searchResults = await Promise.all(
       searchData.terms.map(async (term, i) => {
-        const { nbHits } = await index.search(term);
+        const { nbHits } =  await index.search(term);
         if (nbHits > 0) { lostConversions[i] = searchCount[i]; }
         else { lostConversions[i] = 0; } 
         potentialLostRevenue[i] = lostConversions[i] * conversionRate * aov;
-        console.log(lostConversions[i]);
 
         return {
           term,
